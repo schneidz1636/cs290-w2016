@@ -23,8 +23,13 @@
 	mysqli_close($connection);
 ?-->
 	<?php 
+	if (isset($_GET['id'])){
+		$i13 = $_GET['id'];
+	}else{
+		$i13 = "9780393082104";
+	}
 	$bookstring;
-	$url = "http://isbndb.com/api/v2/json/YYH6FGB2/book/9780393082104";
+	$url = "https://www.googleapis.com/books/v1/volumes?q=isbn:". $i13;
 	$json = file_get_contents($url);
 	$bookstring = json_decode($json); 
 	?>
@@ -39,7 +44,7 @@
 		<link rel="stylesheet" href="http://recarbonated.me/images/bootstrap-table.min.css">
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="http://recarbonated.me/images/bootstrap-table.min.js"></script>
-		<title><?php echo $bookstring->data[0]->title;?></title>
+		<title><?php echo $bookstring->items[0]->volumeInfo->title;?></title>
 	</head>
 	<!--This is the header/navbar that is present-->
 	<body>
@@ -69,36 +74,34 @@
 		</div>
 		<!--This is the main body-->
 	<div class="container-fluid">
-		<div class="col-sm-4 col-md-4 col-xs-4 image-container">
-			<div class="thumbnail" style="border:none; background:white;">
-				<img src="http://recarbonated.me/images/2015-11-05_12-27-50.png" style="width:fill; center" />
-			</div>
+		<div class="col-sm-4 col-md-4 col-xs-4 ">
+			<img src= "<?php echo $bookstring->items[0]->volumeInfo->imageLinks->thumbnail;?>" class="img-responsive center-block"/>
 		</div>
 		<div class="col-sm-6 col-md-8 col-xs-12">  
-			<h2> <?php echo $bookstring->data[0]->title;?> by:
-			<?php echo $bookstring->data[0]->author_data[0]->name;
+			<h2> <?php echo $bookstring->items[0]->volumeInfo->title;?> by:
+			<?php echo $bookstring->items[0]->volumeInfo->authors[0];
 			echo ' & ';
-			echo $bookstring->data[0]->author_data[1]->name; ?> </h2>
-			<p> <?php echo $bookstring->data[0]->summary;?></p>
+			echo $bookstring->items[0]->volumeInfo->authors[1]; ?> </h2>
+			<p> <?php echo $bookstring->items[0]->volumeInfo->description; ?></p>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 			<table class="table" style="padding-top:20px;">
 			<tr>
-				<td>ISBN10:</td>
-				<td><?php echo $bookstring->data[0]->isbn10; ?></td>
-			</tr>
-			<tr>
 				<td>ISBN13:</td>
-				<td><?php echo $bookstring->data[0]->isbn13; ?></td>
+				<td><?php echo $bookstring->items[0]->volumeInfo->industryIdentifiers[0]->identifier; ?></td>
 			</tr>
 			<tr>
 				<td>Publisher:</td>
-				<td><?php echo $bookstring->data[0]->publisher_name; ?></td>
+				<td><?php echo $bookstring->items[0]->volumeInfo->publisher; ?></td>
 			</tr>
 			<tr>
-				<td>Physical Characteristics:</td>
-				<td><?php echo $bookstring->data[0]->physical_description_text; ?></td>
+				<td>Publish Date:</td>
+				<td><?php echo $bookstring->items[0]->volumeInfo->publishedDate; ?></td>
+			</tr>
+			<tr>
+				<td>Pages</td>
+				<td><?php echo $bookstring->items[0]->volumeInfo->pageCount; ?></td>
 			</tr>
 			<tr>
 				<td>Edition:</td>
