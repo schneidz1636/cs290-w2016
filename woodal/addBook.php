@@ -1,5 +1,7 @@
-
 <?php include("_header.php");?>
+<?php 
+	if (checkAuth(!isset($_SESSION["onidid"])) != "") {
+?>
 
 	<div class="panel panel-default">
 		
@@ -31,5 +33,5 @@
 		</div>
 	
 	</div>
-	
+	<?php } ?>
 <?php include("_footer.php");?>

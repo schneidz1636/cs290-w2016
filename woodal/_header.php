@@ -1,3 +1,42 @@
+<?php 
+session_start(); 
+
+
+function checkAuth($doRedirect) {
+	if (isset($_SESSION["onidid"]) && $_SESSION["onidid"] != "") return $_SESSION["onidid"];
+
+	 $pageURL = 'http';
+	 if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	 $pageURL .= "://";
+	 if ($_SERVER["SERVER_PORT"] != "80") {
+	  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["SCRIPT_NAME"];
+	 } else {
+	  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"];
+	 }
+
+	$ticket = isset($_REQUEST["ticket"]) ? $_REQUEST["ticket"] : "";
+
+	if ($ticket != "") {
+		$url = "https://login.oregonstate.edu/cas/serviceValidate?ticket=".$ticket."&service=".$pageURL;
+		$html = file_get_contents($url);
+		$pattern = '/\\<cas\\:user\\>([a-zA-Z0-9]+)\\<\\/cas\\:user\\>/';
+		preg_match($pattern, $html, $matches);
+		if ($matches && count($matches) > 1) {
+			$onidid = $matches[1];
+			$_SESSION["onidid"] = $onidid;
+			return $onidid;
+		} 
+	} else if ($doRedirect) {
+		$url = "https://login.oregonstate.edu/cas/login?service=".$pageURL;
+		echo "<script>location.replace('" . $url . "');</script>";
+	} 
+	return "";
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -41,9 +80,16 @@
 				<li><a href="#">My Inventory</a></li>
 			</ul>
 			
-			<ul class="nav navbar-nav navbar-right">
-      			<li><a href="addUser.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			<?php if (isset($_SESSION["onidid"])){?>
+				<ul class="nav navbar-nav navbar-right">
+				 
+					<li><a href="https://login.oregonstate.edu/cas/logout" target="_blank"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>
+			<?php } else { ?>
+				<ul class="nav navbar-nav navbar-right">
+				
+					<li><a href="https://secure.onid.oregonstate.edu/cgi-bin/newacct?type=want_auth"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="https://login.oregonstate.edu/cas/login" target="_blank"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>
+			<?php } ?>	
 			</ul>
 
 		</div>
