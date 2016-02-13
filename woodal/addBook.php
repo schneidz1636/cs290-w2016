@@ -1,5 +1,5 @@
-<?php include("_header.php");?>
-<?php 
+<?php
+	include("_header.php");
 	if (checkAuth(!isset($_SESSION["onidid"])) != "") {
 ?>
 

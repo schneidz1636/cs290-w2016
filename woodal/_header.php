@@ -35,7 +35,8 @@ function checkAuth($doRedirect) {
 		if ($matches && count($matches) > 1) {
 			$onidid = $matches[1];
 			$_SESSION["onidid"] = $onidid;
-			return $onidid;
+			echo "<script>location.replace('" . $pageURL . "');</script>";
+			//return $onidid;
 		} 
 	} else if ($doRedirect) {
 		$url = "https://login.oregonstate.edu/cas/login?service=".$pageURL;
@@ -83,7 +84,6 @@ $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "woodal-db", "z2uX511usXYDJ4Y
   			  </div>
     	<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<script>//alert("$_SERVER[SCRIPT_NAME'] = <?php echo $_SERVER['SCRIPT_NAME']; ?>");</script>
 				<li <?php if (endsWith($_SERVER['SCRIPT_FILENAME'], "index.php")) { echo "class='active'"; } ?>"><a href="index.php">Home</a></li>
 				<li><a href="#">Books Available</a></li>
 				<li <?php if (endsWith($_SERVER['SCRIPT_FILENAME'], "addBook.php")) { echo "class='active'"; } ?>><a href="addBook.php">Add Book</a></li>
