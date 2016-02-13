@@ -1,5 +1,4 @@
-
-	<?php include("_header.php");?>
+<?php include("_header.php");?>
 		
 		<div class="container-fluid">
 		<div class="jumbotron">

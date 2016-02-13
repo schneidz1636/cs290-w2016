@@ -1,4 +1,3 @@
-
 <?php include("_header.php");?>
 	
 	<div class="panel panel-default">
