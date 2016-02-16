@@ -1,6 +1,17 @@
 <?php 
-session_start(); 
+session_start();
 
+require("flashMessages.php");
+
+function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+}
+
+function endsWith($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+}
 
 function checkAuth($doRedirect) {
 	if (isset($_SESSION["onidid"]) && $_SESSION["onidid"] != "") return $_SESSION["onidid"];
@@ -24,7 +35,8 @@ function checkAuth($doRedirect) {
 		if ($matches && count($matches) > 1) {
 			$onidid = $matches[1];
 			$_SESSION["onidid"] = $onidid;
-			return $onidid;
+			echo "<script>location.replace('" . $pageURL . "');</script>";
+			//return $onidid;
 		} 
 	} else if ($doRedirect) {
 		$url = "https://login.oregonstate.edu/cas/login?service=".$pageURL;
@@ -33,8 +45,7 @@ function checkAuth($doRedirect) {
 	return "";
 }
 
-
-
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu", "woodal-db", "z2uX511usXYDJ4Y0", "woodal-db");
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +60,7 @@ function checkAuth($doRedirect) {
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 		<!--THis is to connect to local custom style sheet. -->
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<!--link rel="stylesheet" type="text/css" href="style.css"-->
 				
 	</head>
 	
@@ -73,22 +84,22 @@ function checkAuth($doRedirect) {
   			  </div>
     	<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.php">Home</a></li>
+				<li <?php if (endsWith($_SERVER['SCRIPT_FILENAME'], "index.php")) { echo "class='active'"; } ?>"><a href="index.php">Home</a></li>
 				<li><a href="#">Books Available</a></li>
-				<li><a href="addBook.php">Add Book</a></li>
-      			<li><a href="formAdd.php">Add Location</a></li>
+				<li <?php if (endsWith($_SERVER['SCRIPT_FILENAME'], "addBook.php")) { echo "class='active'"; } ?>><a href="addBook.php">Add Book</a></li>
+      			<li <?php if (endsWith($_SERVER['SCRIPT_FILENAME'], "formAdd.php")) { echo "class='active'"; } ?>><a href="formAdd.php">Add Location</a></li>
 				<li><a href="#">My Inventory</a></li>
 			</ul>
 			
 			<?php if (isset($_SESSION["onidid"])){?>
 				<ul class="nav navbar-nav navbar-right">
 				 
-					<li><a href="https://login.oregonstate.edu/cas/logout" target="_blank"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>
-			<?php } else { ?>
+					<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			<?php } else if (false) { ?>
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li><a href="https://secure.onid.oregonstate.edu/cgi-bin/newacct?type=want_auth"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="https://login.oregonstate.edu/cas/login" target="_blank"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>
+					<li><a href="https://login.oregonstate.edu/cas/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			<?php } ?>	
 			</ul>
 
@@ -96,5 +107,9 @@ function checkAuth($doRedirect) {
 		
 		</nav>
 	<main>
-	
-	<?php $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "woodal-db", "z2uX511usXYDJ4Y0", "woodal-db");?>
+		<div class="container">
+			<?php
+				$msg = new FlashMessages();
+				$msg->display();
+			?>
+		</div>
