@@ -71,7 +71,7 @@ function checkAuth($redirectIfNeeded) {
 						echo	'<li><a href="add_book_input.php">Add Book</a></li>';
 						echo	'<li><a href="#">Add Location</a></li>';
 						echo	'<li><a href="view_books.php">View Books</a></li>';
-						echo	'<li><a href="form_test_input.php">ISBN Search</a></li>';
+						echo	'<li><a href="isbn_search_input.php">ISBN Search</a></li>';
 						echo '</ul>';
 						echo '<ul class="nav navbar-nav navbar-right">';
 						echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
@@ -90,5 +90,5 @@ function checkAuth($redirectIfNeeded) {
 	<main>
 <?php
 ini_set('display_errors', 'On');
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","","","");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","xlixDZCJ0H5SlyUq","grantch-db");
 ?>
