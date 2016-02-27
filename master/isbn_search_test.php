@@ -19,7 +19,7 @@ $json = file_get_contents($tempURL);
 $bookstring = json_decode($json);
 
 if($bookstring->totalItems == "0"){
-	echo "<script>location.replace(\"http://web.engr.oregonstate.edu/~grantch/test/bad_isbn.php\");</script>";
+	echo "<script>location.replace(\"http://web.engr.oregonstate.edu/~schneidz/cs290-w2016/master/bad_isbn.php\");</script>";
 }
 //This section checks if the parts of the object exist or not
 //if exists puts data into variable, else, display DNE
@@ -38,7 +38,7 @@ if(isset($bookstring->items[0]->volumeInfo->authors[0])){
 if(isset($bookstring->items[0]->volumeInfo->description)){
 	$description = $bookstring->items[0]->volumeInfo->description;
 }else{
-	$authors = "Description unavailable";
+	$description = "Description unavailable";
 }
 
 if(isset($bookstring->items[0]->volumeInfo->industryIdentifiers[0]->identifier)){
