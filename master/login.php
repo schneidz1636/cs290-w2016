@@ -34,14 +34,22 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 }
 ?>
 
-<form method="post" action='login.php' class="inform">
-<ul>
-<li><label>Username:</label> <input type="text" name="username">
-<li><label>Password:</label> <input type="password" name="password">
-<li><input type=submit>
-</ul>
-<input type="hidden" name="sendBackTo" 
-	value="<?= htmlspecialchars($sendBackTo) ?>">
-</form>
+<div class="container">
+	<h1>Please Login</h1>
+		<div class="col-lg-6">
+			<div class="well" background color="#f8f8f8">
+				<form method="post" action='login.php' class="inform">
+					<div class="form-group">
+						<label for="username">Username: 
+						<input type="text" class="form-control" name="username">
+						<label for="password">Password:</label>
+						<input type="password" class="form-control" name="password">
+						<button type="submit" class="btn btn-default" name="submit">Log On</button>
+					</div>
+					<input type="hidden" name="sendBackTo" value="<?= htmlspecialchars($sendBackTo) ?>">
+				</form>
+			</div>
+		</div>
+</div>
 
 <?php include("_footer.php");?>
