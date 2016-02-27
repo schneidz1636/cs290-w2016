@@ -79,12 +79,12 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 	$bookThumbnail = "images/unavailable.jpg";
 }
 //going to add function to add returned data into the book db if the user wants to.
-$_SESSION['isbnTemp'] = test_input($identifier);
-$_SESSION['titleTemp'] = test_input($title);
-$_SESSION['authorsTemp'] = test_input($authors);
+$_SESSION['isbnTemp'] = htmlspecialchars($identifier);
+$_SESSION['titleTemp'] = htmlspecialchars($title);
+$_SESSION['authorsTemp'] = htmlspecialchars($authors);
 //$_SESSION['descriptionTemp'] = test_input($description);
-$_SESSION['publisherTemp'] = test_input($publisher);
-$_SESSION['pageCountTemp'] = test_input($pageCount);
+$_SESSION['publisherTemp'] = htmlspecialchars($publisher);
+$_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 
 
 ?>
