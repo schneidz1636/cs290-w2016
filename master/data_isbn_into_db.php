@@ -21,23 +21,23 @@ $pageCount = htmlspecialchars($_SESSION['pageCountTemp']);
 
 						<div class="form-group">
 							<label for="isbn">ISBN:
-							<input type="text" name ="isbn" value=<?php echo $identifier;?> disabled>
+							<input type="text" name ="isbn" value="<?php echo $identifier;?>" disabled>
 						</div>
 						<div class="form-group">
 							<label>Title:
-							<input type="text" name ="name" value=<?php echo $title;?>>
+							<input type="text" name ="name" value="<?php echo $title;?>">
 						</div>
 						<div class="form-group">
 							<label>Author:
-							<input type="text" name ="author" value=<?php echo $authors;?>>
+							<input type="text" name ="author" value="<?php echo $authors;?>">
 						</div>
 						<div class="form-group">
 							<label>Publisher:
-							<input type="text" name ="publisher" value=<?php echo $publisher;?>>
+							<input type="text" name ="publisher" value="<?php echo $publisher;?>">
 						</div>
 						<div class="form-group">
 							<label>Page count:
-							<input type="text" name ="pageCount" value=<?php echo $pageCount;?>>
+							<input type="text" name ="pageCount" value="<?php echo $pageCount;?>">
 						</div>
 						<div class="form-group">
 							<label>Location:
