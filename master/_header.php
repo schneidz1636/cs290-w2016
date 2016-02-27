@@ -81,22 +81,7 @@ function checkAuth($redirectIfNeeded) {
 						echo '</ul>';
 						echo '<ul class="nav navbar-nav navbar-right">';
 						echo '<li><a href="add_user.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
-					//	echo '<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
-						echo    '<li class="dropdown">';
-						echo   '<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign-In<strong class="caret"></strong></a>';
-						echo      '<div class="dropdown-menu">';
-						echo         '<form method="post" action="r_login.php">';
-						echo            '<div class="form-group">';
-						echo               '<label for="username">Username:</label>';
-						echo               '<input type="username" class="form-control" name="r_username" id="username" placeholder="YourMom" required>';
-						echo            '</div>';
-						echo            '<div class="form-group">';
-						echo               '<label for="password">Password:</label>';
-						echo               '<input type="password" class="form-control" name="r_password" id="password" required>';
-						echo            '</div>';
-						echo            '<div class="form-group">';
-						echo               '<button type="submit", class="btn btn-default">Login</button>';
-						echo            '</div>';
+						echo '<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
 					}
 				?>		
 			</ul>
@@ -105,5 +90,5 @@ function checkAuth($redirectIfNeeded) {
 	<main>
 <?php
 ini_set('display_errors', 'On');
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","kZeMDqcA1CU2qoNs","grantch-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","wi04ReSBJki3T8bP","grantch-db");
 ?>
