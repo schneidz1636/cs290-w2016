@@ -43,7 +43,7 @@ $pageCount = htmlspecialchars($_SESSION['pageCountTemp']);
 							<label>Location:
 							<input type="text" name ="location">
 						</div>
-							<input type=submit>
+							
 							<button type="submit" class="btn btn-default" name="submit">Add Book</button>
 
 					</form>
