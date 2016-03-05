@@ -46,6 +46,7 @@ main li {
     position:   relative;
     width:      185px;
     height:     50px;
+	background-color: white;
 }
 .ratings_stars {
     background-image: url("star_empty.png");
@@ -68,19 +69,21 @@ main li {
     position:   absolute;  
 	margin-bottom: 20px;
 } 
-.movie_choice {
-    font: 10px verdana, sans-serif;
+.book_rating {
+	padding-top: 50px;
     margin: 0 auto 40px auto;
     width: 180px;
-
+	display: block;
+	
 }
 
 .page {
 	margin-left: 10%;
 	margin-right: 10%;
 	margin-bottom: 0;
-	padding-bottomg: 20px;
+	padding-bottom: 0px;
 	background-color: white;
+	height: 100%;
 }
 
 body {
@@ -100,7 +103,7 @@ body {
 	color: #555;
 }
 .carousel-inner {
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 }
 .item {
 
@@ -121,4 +124,12 @@ body {
 /* Fix the height of the carousel images */
 .carousel-image {
 	height: 250px !important;
+}
+
+.add-marg {
+	margin-top: 50px;
+}
+
+.hideit {
+	visibility: hidden;
 }

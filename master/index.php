@@ -78,45 +78,8 @@
 			<!--</div>-->
 		</div>	
 	</center>		
-	
-	<div class='movie_choice'>
-		Rate: Book A
-		<div id="r1" class="rate_widget">
-			<div class="star_1 ratings_stars"></div>
-			<div class="star_2 ratings_stars"></div>
-			<div class="star_3 ratings_stars"></div>
-			<div class="star_4 ratings_stars"></div>
-			<div class="star_5 ratings_stars"></div>
-			<div class="total_votes">vote data</div>
-		</div>
-	</div>
-	 
-	<?php if (isset($_SESSION["uid"])){?>
-		<!-- Nothing shows if logged in -->
-	<?php } else { ?>
-		<center>Please log in to vote!</center>
-	<?php } ?>
-	 
-	<div class='movie_choice'>
-		Rate: Book B
-		<div id="r2" class="rate_widget">
-			<div class="star_1 ratings_stars"></div>
-			<div class="star_2 ratings_stars"></div>
-			<div class="star_3 ratings_stars"></div>
-			<div class="star_4 ratings_stars"></div>
-			<div class="star_5 ratings_stars"></div>
-			<div class="total_votes">vote data</div>
-		</div>
-	</div>
-	
-	<?php if (isset($_SESSION["uid"])){?>
-		<!-- Nothing shows if logged in -->
-		<p> .</p> <!-- Hopefully will prevent odd css -->
-	<?php } else { ?>
-		<center>Please log in to vote!</center>
-	<?php } ?>
-	
-	
+
+	<p class="hideit">.</p>
 	</div>
 
 	

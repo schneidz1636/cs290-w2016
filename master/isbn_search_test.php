@@ -90,9 +90,29 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 ?>
 	<div class="well">	
 	<div class="container-fluid">
-		<div class="col-sm-4 col-md-4 col-xs-4">
+		<div class="col-sm-4 col-md-4 col-xs-4 add-marg">
 			
 			<img src= "<?php echo $bookThumbnail;?>" class="img-responsive center-block"/>
+			
+			
+			<div class='book_rating'>
+				Rate this book!
+				<div id="<?php echo test_input($identifier); ?>" class="rate_widget">
+					<div class="star_1 ratings_stars"></div>
+					<div class="star_2 ratings_stars"></div>
+					<div class="star_3 ratings_stars"></div>
+					<div class="star_4 ratings_stars"></div>
+					<div class="star_5 ratings_stars"></div>
+					<div class="total_votes">vote data</div>
+				</div>
+			</div>
+
+			<?php if (isset($_SESSION["uid"])){?>
+				<!-- Nothing shows if logged in -->
+			<?php } else { ?>
+				<center>Please log in to vote!</center>
+			<?php } ?>
+			
 		</div>
 
 		<div class="col-sm-6 col-md-8 col-xs-12">  
@@ -120,6 +140,8 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 			</tr>
 
 			</table>
+
+			
 
 			<div class="col-sm-4 col-md-4 col-xs-4">
 			<form method="post" action='data_isbn_into_db.php' class="inform">
