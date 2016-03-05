@@ -88,12 +88,13 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 
 
 ?>
-		
+	<div class="well">	
 	<div class="container-fluid">
-		<div class="col-sm-4 col-md-4 col-xs-4 ">
+		<div class="col-sm-4 col-md-4 col-xs-4">
 			
 			<img src= "<?php echo $bookThumbnail;?>" class="img-responsive center-block"/>
 		</div>
+
 		<div class="col-sm-6 col-md-8 col-xs-12">  
 			<h2> <?php echo $title;?> by: <?php echo test_input($authors);?> </h2>
 			<p> <?php echo $description; ?></p>
@@ -117,16 +118,24 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 				<td>Pages</td>
 				<td><?php echo test_input($pageCount); ?></td>
 			</tr>
+
 			</table>
+
+			<div class="col-sm-4 col-md-4 col-xs-4">
+			<form method="post" action='data_isbn_into_db.php' class="inform">
+				
+					<!--<label>Add to books?</label>-->
+					<button type="submit" class="btn btn-default" name="submit">Add Book</button>
+					
+			</form>
+			
 		</div>
-		<form method="post" action='data_isbn_into_db.php' class="inform">
-		<ul>
-		<li><label>Add to your books?</label>
-		<li><input type=submit>
-		</ul>
-		</form>
-		
+			
+		</div>
+
 	</div>
+
+</div>
 	
 	
 	
