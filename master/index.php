@@ -1,10 +1,4 @@
-
-
-	<?php include("_header.php");?>
-	
-	
-	
-	
+<?php include("_header.php");?>
 	
 <div class="page">	
 		
@@ -50,22 +44,22 @@
 							<div class="item active" >
 							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->	
 							<!--We could use php to parse the Json, and grab the thumbnail links-->
-							<img src="http://books.google.com/books/content?id=Hp2nnBrUh5cC&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt="HTML CSS COVER" style="width:200px;height:200px;">
+							<img src="http://books.google.com/books/content?id=Hp2nnBrUh5cC&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt="HTML CSS COVER" class="carousel-image">
 							</div>
 				
 							<div class="item">			
 							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->			
-							<img src="http://books.google.com/books/content?id=-DG18Nf7jLcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Digital Logic Design cover" style="width:200px;height:200px;">			
+							<img src="http://books.google.com/books/content?id=-DG18Nf7jLcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Digital Logic Design cover" class="carousel-image">			
 							</div>
 				
 							<div class="item">			
 							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->			
-							<img src="http://books.google.com/books/content?id=i1nhPIbQylcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Space Chronicle cover" style="width:200px;height:200px;">			
+							<img src="http://books.google.com/books/content?id=i1nhPIbQylcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Space Chronicle cover" class="carousel-image">			
 							</div>
 				
 							<div class="item">			
 							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->			
-							<img src="http://books.google.com/books/content?id=JT2oufFK4tkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Linux Bible cover" style="width:200px;height:200px;">			
+							<img src="http://books.google.com/books/content?id=JT2oufFK4tkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Linux Bible cover" class="carousel-image">			
 							</div>
 					</div>
 					<!-- Left and right controls -->

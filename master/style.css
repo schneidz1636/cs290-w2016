@@ -117,3 +117,8 @@ body {
 	padding-bottom: 24px;
 	padding-top: 16px;
 }
+
+/* Fix the height of the carousel images */
+.carousel-image {
+	height: 250px !important;
+}
