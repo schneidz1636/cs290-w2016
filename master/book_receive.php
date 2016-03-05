@@ -5,23 +5,23 @@
 
 <?php
 
-if ($stmt = $mysqli->prepare("insert into books(bid,isbn,name,author,publisher,edition,location) values(?,?,?,?,?,?,?)")){
-	//$bid = $_REQUEST["bid"];
-	$isbn = $_REQUEST["isbn"];
+if ($stmt = $mysqli->prepare("insert into books(isbn,title,authors,publisher,pagecount,location) values(?,?,?,?,?,?)")){
+	$isbn = $_REQUEST["isbn1"];
 	$title = $_REQUEST["title"];
-	$author = $_REQUEST["author"];
+	$authors = $_REQUEST["authors"];
 	$publisher = $_REQUEST["publisher"];
 	$pageCount = $_REQUEST["pageCount"];
 	$location = $_REQUEST["location"];
 	
-	$stmt->bind_param("iisssss",$bid, $isbn, $title, $author, $publisher, $pageCount, $location);
+	$stmt->bind_param("isssis", $isbn, $title, $authors, $publisher, $pageCount, $location);
     $stmt->execute();
+	$stmt->close();
 }else{
 	printf("Error: %s\n", $mysqli->error);
 }
 
 ?>
-
+<?php } ?>
 <?php include("_footer.php");?>
 	
 
