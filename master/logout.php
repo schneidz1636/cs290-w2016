@@ -4,8 +4,8 @@
 
 <?php
 
-$_SESSION["uid"] = "";
-echo "<script>location.replace(\"http://web.engr.oregonstate.edu/~grantch/test/login.php\");</script>";
+unset($_SESSION["uid"]);
+echo "<script>location.replace('index.php');</script>";
 
 ?>
 
