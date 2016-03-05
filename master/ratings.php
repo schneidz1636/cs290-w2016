@@ -47,38 +47,38 @@ class ratings {
 		# Get user id
 		$uid = $_POST['user_id'];
 		
-		#Check if user has previously voted
-		#if( !array_key_exists( $this->data[$ID][$uid] ) {
 			
-			# Add user to voted list
+		# Add user to voted list
 
-			$this->data[$ID][$uid] = 1;
-			
+		$this->data[$ID][$uid] = 1;
 		
-			# Get the value of the vote
-			preg_match('/star_([1-5]{1})/', $_POST['clicked_on'], $match);
-			$vote = $match[1];
+	
+		# Get the value of the vote
+		preg_match('/star_([1-5]{1})/', $_POST['clicked_on'], $match);
+		$vote = $match[1];
+		
+		$ID = $this->widget_id;
+		# Update the record if it exists
+		if($this->data[$ID]) {
+			#Check if user has previously voted
+			if( $this->data[$ID][$uid] ) {
 			
-			$ID = $this->widget_id;
-			# Update the record if it exists
-			if($this->data[$ID]) {
+			
 				$this->data[$ID]['number_votes'] += 1;
 				$this->data[$ID]['total_points'] += $vote;
 			}
-			# Create a new one if it doesn't
-			else {
-				$this->data[$ID]['number_votes'] = 1;
-				$this->data[$ID]['total_points'] = $vote;
-			}
-			
-			$this->data[$ID]['dec_avg'] = round( $this->data[$ID]['total_points'] / $this->data[$ID]['number_votes'], 1 );
-			$this->data[$ID]['whole_avg'] = round( $this->data[$ID]['dec_avg'] );
-				
-				
-			file_put_contents($this->data_file, serialize($this->data));
+		}
+		# Create a new one if it doesn't
+		else {
+			$this->data[$ID]['number_votes'] = 1;
+			$this->data[$ID]['total_points'] = $vote;
+		}
+		
+		$this->data[$ID]['dec_avg'] = round( $this->data[$ID]['total_points'] / $this->data[$ID]['number_votes'], 1 );
+		$this->data[$ID]['whole_avg'] = round( $this->data[$ID]['dec_avg'] );
 			
 			
-		#}
+		file_put_contents($this->data_file, serialize($this->data));
 		
 		$this->get_ratings();
 	}

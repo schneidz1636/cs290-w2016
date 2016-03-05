@@ -93,7 +93,7 @@ function checkAuth($redirectIfNeeded) {
 				}
 				
 				// Allows voting to work only when logged in
-				<?php if (isset($_SESSION["onidid"])){?>
+				<?php if (isset($_SESSION["uid"])){?>
 				$('.ratings_stars').bind('click', function() {
 					var star = this;
 					var widget = $(this).parent();
@@ -124,7 +124,7 @@ function checkAuth($redirectIfNeeded) {
 <body>
 		
 	<!-- Code to help JS get onidid for 5-Star-->
-	<input type="hidden" name="jsid" value="<?=$_SESSION['onidid'];?>"></input>
+	<input type="hidden" name="jsid" value="<?=$_SESSION['uid'];?>"></input>
 			
 		
 	<!--This is the beginning of the navbar code-->

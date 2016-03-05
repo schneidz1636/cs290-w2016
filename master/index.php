@@ -91,7 +91,7 @@
 		</div>
 	</div>
 	 
-	<?php if (isset($_SESSION["onidid"])){?>
+	<?php if (isset($_SESSION["uid"])){?>
 		<!-- Nothing shows if logged in -->
 	<?php } else { ?>
 		<center>Please log in to vote!</center>
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 	
-	<?php if (isset($_SESSION["onidid"])){?>
+	<?php if (isset($_SESSION["uid"])){?>
 		<!-- Nothing shows if logged in -->
 		<p> .</p> <!-- Hopefully will prevent odd css -->
 	<?php } else { ?>
