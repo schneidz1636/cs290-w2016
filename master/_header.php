@@ -145,18 +145,18 @@ function checkAuth($redirectIfNeeded) {
 					//this changes the log-in/log-out button based on if the user is logged in
 					if(isset($_SESSION["uid"]) && $_SESSION["uid"] != ""){
 						echo '<ul class="nav navbar-nav">';
-						echo 	'<li class="active"><a href="index.php">Home</a></li>';
+						echo 	'<li id="navbar-home"><a href="index.php">Home</a></li>';
 						echo	'<li><a href="#">Books Available</a></li>';
-						echo	'<li><a href="add_book_input.php">Add Book</a></li>';
-						echo	'<li><a href="#">Add Location</a></li>';
-						echo	'<li><a href="view_books.php">View Books</a></li>';
-						echo	'<li><a href="isbn_search_input.php">ISBN Search</a></li>';
+						echo	'<li id="navbar-addbook"><a href="add_book_input.php">Add Book</a></li>';
+						echo	'<li id="navbar-addlocation"><a href="#">Add Location</a></li>';
+						echo	'<li id="navbar-books"><a href="view_books.php">View Books</a></li>';
+						echo	'<li id="navbar-search"><a href="isbn_search_input.php">ISBN Search</a></li>';
 						echo '</ul>';
 						echo '<ul class="nav navbar-nav navbar-right">';
 						echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
 					}else{
 						echo '<ul class="nav navbar-nav">';
-						echo 	'<li class="active"><a href="index.php">Home</a></li>';
+						echo 	'<li id="navbar-home"><a href="index.php">Home</a></li>';
 						echo '</ul>';
 						echo '<ul class="nav navbar-nav navbar-right">';
 						echo '<li><a href="add_user.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
@@ -164,12 +164,28 @@ function checkAuth($redirectIfNeeded) {
 					}
 				?>		
 			</ul>
-		</div>	
+		</div>
+
+		<!-- Highlight the current page in navbar -->
+		<script>
+		pathname = window.location.pathname;
+		scriptname = pathname.substring(pathname.lastIndexOf('/') + 1);
+
+		if (scriptname === "index.php") {
+			$("#navbar-home").addClass("active");
+		} else if (scriptname === "add_book_input.php") {
+			$("#navbar-addbook").addClass("active");
+		} else if (scriptname === "view_books.php") {
+			$("#navbar-books").addClass("active");
+		} else if (scriptname === "isbn_search_input.php") {
+			$("#navbar-search").addClass("active");
+		}
+		</script>		
 		</nav>
 	<main>
 <?php
 ini_set('display_errors', 'On');
 
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","rVrkAizgwSrdVJlU","grantch-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","","grantch-db");
 
 ?>
