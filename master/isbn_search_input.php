@@ -12,7 +12,6 @@
 						<div class="form-group">
 							<label for="isbn">ISBN:</label> 
 							<input type="text" class="form-control" name="isbn_temp" size="35">
-							<input type=submit>
 						</div>
 						<button type="submit" class="btn btn-default" name="submit">Search</button>
 					</form>
