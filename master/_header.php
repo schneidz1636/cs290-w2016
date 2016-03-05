@@ -43,10 +43,89 @@ function checkAuth($redirectIfNeeded) {
 		<!--THis is to connect to local custom style sheet. -->
 		<link rel="stylesheet" type="text/css" href="style.css">
 				
+				
+		<!-- 5-Star Rating System -->		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script>
+		
+			$(document).ready(function() {
+			
+				$('.ratings_stars').hover(
+					// Handles the mouseover
+					function() {
+						$(this).prevAll().andSelf().addClass('ratings_over');
+						$(this).nextAll().removeClass('ratings_vote'); 
+					},
+					// Handles the mouseout
+					function() {
+						$(this).prevAll().andSelf().removeClass('ratings_over');
+						set_votes($(this).parent());
+					}
+				);
+				
+				
+				$('.rate_widget').each(function(i) {
+					var widget = this;
+					var out_data = {
+						widget_id : $(widget).attr('id'),
+						fetch: 1
+					};
+					$.post(
+						'ratings.php',
+						out_data,
+						function(INFO) {
+							$(widget).data( 'fsr', INFO );
+							set_votes(widget);
+						},
+						'json'
+					);
+				});
+				
+				function set_votes(widget) {
+		 
+					var avg = $(widget).data('fsr').whole_avg;
+					var votes = $(widget).data('fsr').number_votes;
+					var exact = $(widget).data('fsr').dec_avg;
+					 
+					$(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
+					$(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote'); 
+					$(widget).find('.total_votes').text( votes + ' votes recorded (' + exact + ' rating)' );
+				}
+				
+				// Allows voting to work only when logged in
+				<?php if (isset($_SESSION["onidid"])){?>
+				$('.ratings_stars').bind('click', function() {
+					var star = this;
+					var widget = $(this).parent();
+					 
+					var clicked_data = {
+						clicked_on : $(star).attr('class'),
+						widget_id : $(star).parent().attr('id'),
+						user_id : $("jsid").text()
+					};
+					$.post(
+						'ratings.php',
+						clicked_data,
+						function(INFO) {
+							widget.data( 'fsr', INFO );
+							set_votes(widget);
+						},
+						'json'
+					); 
+				});
+				<?php }?>
+			});
+			
+		</script>
+
 	</head>
 	
 	
 <body>
+		
+	<!-- Code to help JS get onidid for 5-Star-->
+	<input type="hidden" name="jsid" value="<?=$_SESSION['onidid'];?>"></input>
+			
 		
 	<!--This is the beginning of the navbar code-->
 	

@@ -34,3 +34,86 @@ main .courses th {
 main li {
   padding-bottom: 0.5rem;
 }
+
+
+
+
+
+.rate_widget {
+    border:     1px solid #CCC;
+    overflow:   visible;
+    padding:    10px;
+    position:   relative;
+    width:      185px;
+    height:     50px;
+}
+.ratings_stars {
+    background-image: url("star_empty.png");
+    float:      left;
+    height:     28px;
+    padding:    2px;
+    width:      32px;
+}
+.ratings_vote {
+    background-image: url("star_full.png");
+}
+.ratings_over {
+    background-image: url("star_highlight.png");
+}
+.total_votes {
+    background: #eaeaea;
+    top: 58px;
+    left: 0;
+    padding: 5px;
+    position:   absolute;  
+	margin-bottom: 20px;
+} 
+.movie_choice {
+    font: 10px verdana, sans-serif;
+    margin: 0 auto 40px auto;
+    width: 180px;
+
+}
+
+.page {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 0;
+	padding-bottomg: 20px;
+	background-color: white;
+}
+
+body {
+	background-color: #EEEEEE;
+	height: 100%;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.top-body {
+	margin-top: 20px;
+}
+
+.carousel-control {
+	color: #555;
+}
+.carousel-inner {
+	margin-bottom: 20px;
+}
+.item {
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.col-lg-12 {
+	border-style: ridge none ridge none;
+	margin-bottom: 15px;
+}
+
+.jumbotron {
+	padding-bottom: 24px;
+	padding-top: 16px;
+}
