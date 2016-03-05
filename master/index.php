@@ -1,4 +1,19 @@
-<?php include("_header.php");?>
+<?php include("_header.php");
+
+function book_image_url($isbn_temp) {
+	$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . htmlspecialchars($isbn_temp);
+	$json = file_get_contents($tempURL);
+	$bookstring = json_decode($json);
+	
+	if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
+		$bookThumbnail = $bookstring->items[0]->volumeInfo->imageLinks->thumbnail;
+	}else{
+		$bookThumbnail = "images/unavailable.jpg";
+	}
+	
+	return $bookThumbnail;
+}
+?>
 	
 <div class="page">	
 		
@@ -41,26 +56,34 @@
 			<h3 class="carousel-header">Random covers from our collection</h3>
 				<div class="col-lg-12">
 					<div class="carousel-inner" role="listbox">
-							<div class="item active" >
-							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->	
-							<!--We could use php to parse the Json, and grab the thumbnail links-->
-							<img src="http://books.google.com/books/content?id=Hp2nnBrUh5cC&printsec=frontcover&img=1&zoom=1&source=gbs_api" alt="HTML CSS COVER" class="carousel-image">
-							</div>
-				
-							<div class="item">			
-							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->			
-							<img src="http://books.google.com/books/content?id=-DG18Nf7jLcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Digital Logic Design cover" class="carousel-image">			
-							</div>
-				
-							<div class="item">			
-							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->			
-							<img src="http://books.google.com/books/content?id=i1nhPIbQylcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Space Chronicle cover" class="carousel-image">			
-							</div>
-				
-							<div class="item">			
-							<!--I found an api to use to pull in thumbnails of the book cover art from google api's-->			
-							<img src="http://books.google.com/books/content?id=JT2oufFK4tkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Linux Bible cover" class="carousel-image">			
-							</div>
+						<?php
+							$result = $mysqli->query("SELECT COUNT(*) FROM books");
+							$row = $result->fetch_row();
+							$count = $row[0] - 1;
+							
+							if (!$result) {
+								echo "<p style='color: #ff0000;'>". $mysqli->error . "</p>";
+							}
+							
+							for ($i = 0; $i < 4; $i++) {
+								$offset = rand(0,$count);
+								$result = $mysqli->query("SELECT * FROM books LIMIT 1 OFFSET $offset");
+								if ($row = $result->fetch_assoc()) {
+									$book_url = book_image_url($row['isbn']);
+									
+								} else {
+									$book_url = "images/unavailable.jpg";
+								}
+							?>
+							
+								<div class="item <?php if ($i == 0) { echo 'active'; } ?>">
+									<img src="<?php echo $book_url; ?>" alt="<?php echo $row['isbn']; ?>" class="carousel-image">
+								</div>
+							
+							<?php
+								
+							} // End of for 
+							?>
 					</div>
 					<!-- Left and right controls -->
 					
