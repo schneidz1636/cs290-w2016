@@ -27,16 +27,6 @@ function book_image_url($isbn_temp) {
 
 		</div>
 	</div>
-
-	<div class="container-fluid">
-	
-				<div class="row">
-				<div class="col-sm-4">Place holder a, b, and c!</div>
-				<div class="col-sm-8">Place holder d, e, and f!</div>
-				
-			</div>
-
-	</div>
 	
 
 	<center>	
