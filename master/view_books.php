@@ -4,7 +4,7 @@
 	if (checkAuth(true) != "") {
 ?>
 
-<h1>Books</h1>
+<h1>My Books</h1>
 
 <?php
 $time_start = microtime(true);

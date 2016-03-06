@@ -4,11 +4,11 @@
 	if (checkAuth(true) != "") {
 ?>
 
-<h1>Books</h1>
+<h1>Site Inventory</h1>
 
 <?php
 $time_start = microtime(true);
-echo "<table class='table table-striped'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count<th>Location</tr>";
+echo "<table class='table table-striped'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count</tr>";
 if($result = $mysqli->query("select isbn,title,authors,publisher,pagecount from books")){
 	while($obj = $result->fetch_object()){
 		echo "<tr>";
