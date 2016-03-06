@@ -7,7 +7,7 @@
 <div class="container-fluid">
 				
 	<div class="row">
-			<div class="well beer">
+			<div class="well" style="margin-bottom: 0;">
 		
 				<div  style="width: 75%;">
 				<h1>Add Book</h1>
