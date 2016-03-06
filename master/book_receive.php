@@ -3,31 +3,73 @@
 	if (checkAuth(true) != "") {
 ?>
 
-<?php
 
-if ($stmt = $mysqli->prepare("insert into books(isbn,title,authors,publisher,pagecount,location) values(?,?,?,?,?,?)")){
-	$isbn = $_REQUEST["isbn1"];
-	$title = $_REQUEST["title"];
-	$authors = $_REQUEST["authors"];
-	$publisher = $_REQUEST["publisher"];
-	$pageCount = $_REQUEST["pageCount"];
-	$location = $_REQUEST["location"];
-	
-	$stmt->bind_param("isssis", $isbn, $title, $authors, $publisher, $pageCount, $location);
-    $stmt->execute();
-	$stmt->close();
-}else{
-	printf("Error: %s\n", $mysqli->error);
+<?php
+$book_in_main = "";
+$query = $mysqli->prepare("select isbn from books where isbn =?");
+$query->bind_param("i",$isbn);
+if($query->execute()){
+	if($query->fetch()){
+		$stmt = $mysqli->prepare("insert into user_has_book(user_iduser,book_isbn13,location) values(?,?,?)");
+		$isbn = htmlspecialchars($_REQUEST["isbn1"]);
+		$location = htmlspecialchars($_REQUEST["location"]);
+		$uid = htmlspecialchars($_SESSION["uid"]);
+		$stmt->bind_param("iis", $uid, $isbn, $location);
+		$stmt->execute();
+		$stmt->close();
+		$query->close();
+		$book_in_main = "FALSE";
+		
+	}
 }
 
-?>
-<?php } ?>
-<?php include("_footer.php");?>
+if($book_in_main == ""){
+		$stmt = $mysqli->prepare("insert into books(isbn,title,authors,publisher,pagecount) values(?,?,?,?,?)");
+		$isbn = $_REQUEST["isbn1"];
+		$title = $_REQUEST["title"];
+		$authors = $_REQUEST["authors"];
+		$publisher = $_REQUEST["publisher"];
+		$pageCount = $_REQUEST["pageCount"];
+		$stmt->bind_param("isssi", $isbn, $title, $authors, $publisher, $pageCount);
+		$stmt->execute();
+		$stmt->close();
 	
 
+	
+		$stmt = $mysqli->prepare("insert into user_has_book(user_iduser,book_isbn13,location) values(?,?,?)");
+		$uid = htmlspecialchars($_SESSION["uid"]);
+		$location = htmlspecialchars($_REQUEST["location"]);
+		$stmt->bind_param("iis", $uid, $isbn, $location);
+		$stmt->execute();
+		$stmt->close();
+	
+}else{
+	printf("Error: %s\n", $mysqli->error);
+}	
+
+?>
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php } ?>
+<?php include("_footer.php");?>
