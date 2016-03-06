@@ -146,7 +146,7 @@ function checkAuth($redirectIfNeeded) {
 					if(isset($_SESSION["uid"]) && $_SESSION["uid"] != ""){
 						echo '<ul class="nav navbar-nav">';
 						echo 	'<li id="navbar-home"><a href="index.php">Home</a></li>';
-						echo	'<li><a href="view_all_books.php">Site Inventory</a></li>';
+						echo	'<li id="navbar-site-book"><a href="view_all_books.php">Site Inventory</a></li>';
 						echo	'<li id="navbar-addbook"><a href="add_book_input.php">Add Book</a></li>';
 						echo	'<li id="navbar-books"><a href="view_books.php">My Books</a></li>';
 						echo	'<li id="navbar-search"><a href="isbn_search_input.php">ISBN Search</a></li>';
@@ -172,6 +172,8 @@ function checkAuth($redirectIfNeeded) {
 
 		if (scriptname === "index.php") {
 			$("#navbar-home").addClass("active");
+		} else if (scriptname === "view_all_books.php") {
+			$("#navbar-site-book").addClass("active");
 		} else if (scriptname === "add_book_input.php") {
 			$("#navbar-addbook").addClass("active");
 		} else if (scriptname === "view_books.php") {
