@@ -133,3 +133,7 @@ body {
 .hideit {
 	visibility: hidden;
 }
+
+.beer{
+	margin-bottom: 0;
+}
