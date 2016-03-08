@@ -4,7 +4,7 @@
 <div class="container-fluid">
 				
 	<div class="row">
-			<div class="well beer">
+			<div class="well" style="margin-bottom: 0;">
 		
 				<div  style="width: 75%;">
 					<h3 class="error">* ISBN not found</h1>
