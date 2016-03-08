@@ -25,11 +25,11 @@ if($query->execute()){
 
 if($book_in_main == ""){
 		$stmt = $mysqli->prepare("insert into books(isbn,title,authors,publisher,pagecount) values(?,?,?,?,?)");
-		$isbn = $_REQUEST["isbn1"];
-		$title = $_REQUEST["title"];
-		$authors = $_REQUEST["authors"];
-		$publisher = $_REQUEST["publisher"];
-		$pageCount = $_REQUEST["pageCount"];
+		$isbn = htmlspecialchars($_REQUEST["isbn1"]);
+		$title = htmlspecialchars($_REQUEST["title"]);
+		$authors = htmlspecialchars($_REQUEST["authors"]);
+		$publisher = htmlspecialchars($_REQUEST["publisher"]);
+		$pageCount = htmlspecialchars($_REQUEST["pageCount"]);
 		$stmt->bind_param("isssi", $isbn, $title, $authors, $publisher, $pageCount);
 		$stmt->execute();
 		$stmt->close();
@@ -58,7 +58,7 @@ if($book_in_main == ""){
 
 
 
-
+<script>location.replace("http://web.engr.oregonstate.edu/~grantch/test/view_books.php")</script>
 
 
 
