@@ -187,6 +187,6 @@ function checkAuth($redirectIfNeeded) {
 <?php
 ini_set('display_errors', 'On');
 
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","","grantch-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","rVrkAizgwSrdVJlU","grantch-db");
 
 ?>

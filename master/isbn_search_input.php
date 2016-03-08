@@ -8,7 +8,7 @@
 		<div class="col-lg-6">
 			<div class="well" background color="f8f8f8">
 				<h1>Look up book</h1>
-				<form method="post" action='isbn_search_test.php' class="inform" id="isbn_temp_form">
+				<form method="post" action='isbn_search.php' class="inform" id="isbn_temp_form">
 					<div class="form-group">
 						<label for="isbn">ISBN:</label> 
 						<input type="text" class="form-control" name="isbn_temp" size="35" id="isbn_temp">
