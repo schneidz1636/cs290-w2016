@@ -14,17 +14,17 @@
 						<div class="form-group">
 					
 							<label>ISBN:</label>
-							<input type="text" name ="isbn" class="form-control">
+							<input type="text" name ="isbn1" class="form-control">
 						</div>
 
 						<div class="form-group">
 							<label>Name:</label>
-							<input type="text" name ="name"  class="form-control">
+							<input type="text" name ="title"  class="form-control">
 						</div>
 					
 						<div class="form-group">	
 							<label>Author:</label>
-							<input type="text" name ="author"  class="form-control">
+							<input type="text" name ="authors"  class="form-control">
 						</div>
 					
 						<div class="form-group">	
