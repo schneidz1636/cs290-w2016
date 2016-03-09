@@ -79,6 +79,15 @@ function checkAuth($redirectIfNeeded) {
 						},
 						'json'
 					);
+					$.post(
+						'ratings.php',
+						out_data,
+						function(INFO) {
+							$(widget).data( 'fsr', INFO );
+							set_votes(widget);
+						},
+						'json'
+					);
 				});
 				
 				function set_votes(widget) {
@@ -86,10 +95,18 @@ function checkAuth($redirectIfNeeded) {
 					var avg = $(widget).data('fsr').whole_avg;
 					var votes = $(widget).data('fsr').number_votes;
 					var exact = $(widget).data('fsr').dec_avg;
+					var user_vote = $(widget).data('fsr')[document.getElementById('jsid').value];
 					 
 					$(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
 					$(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote'); 
-					$(widget).find('.total_votes').text( votes + ' votes recorded (' + exact + ' rating)' );
+					$(widget).find('.total_votes').text( votes + ' votes (' + exact + ' stars)' );
+					
+					if (typeof user_vote === 'undefined') {
+						$(widget).find('.vote_value').text('Click a star to rate!');
+					}
+					else {
+						$(widget).find('.vote_value').text('Your rating: ' + user_vote );
+					}
 				}
 				
 				// Allows voting to work only when logged in
@@ -101,7 +118,7 @@ function checkAuth($redirectIfNeeded) {
 					var clicked_data = {
 						clicked_on : $(star).attr('class'),
 						widget_id : $(star).parent().attr('id'),
-						user_id : $("jsid").text()
+						user_id : document.getElementById('jsid').value
 					};
 					$.post(
 						'ratings.php',
@@ -111,7 +128,8 @@ function checkAuth($redirectIfNeeded) {
 							set_votes(widget);
 						},
 						'json'
-					); 
+					); 				
+					
 				});
 				<?php }?>
 			});
@@ -124,7 +142,7 @@ function checkAuth($redirectIfNeeded) {
 <body>
 		
 	<!-- Code to help JS get onidid for 5-Star-->
-	<input type="hidden" name="jsid" value="<?=$_SESSION['uid'];?>"></input>
+	<input type="hidden" name="jsid" id="jsid" value="<?php echo $_SESSION["uid"]?>"></input>
 			
 		
 	<!--This is the beginning of the navbar code-->

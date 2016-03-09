@@ -1,1 +1,0 @@
-a:3:{s:0:"";a:1:{s:0:"";i:1;}s:2:"r1";a:4:{s:12:"number_votes";i:2;s:12:"total_points";i:7;s:7:"dec_avg";d:3.5;s:9:"whole_avg";d:4;}s:2:"r2";a:4:{s:12:"number_votes";i:1;s:12:"total_points";s:1:"4";s:7:"dec_avg";d:4;s:9:"whole_avg";d:4;}}

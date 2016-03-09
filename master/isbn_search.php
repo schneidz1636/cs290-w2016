@@ -96,22 +96,24 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 			
 			
 			<div class='book_rating'>
-				Rate this book!
+				<center>Rate this book!</center>
 				<div id="<?php echo test_input($identifier); ?>" class="rate_widget">
 					<div class="star_1 ratings_stars"></div>
 					<div class="star_2 ratings_stars"></div>
 					<div class="star_3 ratings_stars"></div>
 					<div class="star_4 ratings_stars"></div>
 					<div class="star_5 ratings_stars"></div>
-					<div class="total_votes">vote data</div>
+					
+					<div class="total_votes">0 votes</div>
+
+					<?php if (isset($_SESSION["uid"])){  ?>
+						<div class="vote_value">Click a star to vote!</div>
+						
+					<?php } else { ?>
+						<div class="no_vote">Please log in to vote!</div>
+					<?php } ?>
 				</div>
 			</div>
-
-			<?php if (isset($_SESSION["uid"])){?>
-				<!-- Nothing shows if logged in -->
-			<?php } else { ?>
-				<center>Please log in to vote!</center>
-			<?php } ?>
 			
 		</div>
 

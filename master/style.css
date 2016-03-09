@@ -66,13 +66,38 @@ main li {
     top: 58px;
     left: 0;
     padding: 5px;
-    position:   absolute;  
-	margin-bottom: 20px;
+    position: absolute;  
+	margin-bottom: 0px;
+	width: 185px;
+	text-align: center;
 } 
+.vote_value {
+	background: #eaeaea;
+    top: 90px;
+    left: 0;
+    padding: 5px;
+    position: absolute;  
+	margin-bottom: 0px;
+	width: 185px;
+	text-align: center;
+}
+.no_vote {
+	background: #eaeaea;
+    top: 58px;
+    left: 0;
+    padding: 5px;
+    position: absolute;  
+	margin-bottom: 0px;
+	width: 185px;
+	text-align: center;
+}
+
+
 .book_rating {
-	padding-top: 50px;
+	padding-top: 30px;
     margin: 0 auto 40px auto;
     width: 180px;
+	height: 180px;
 	display: block;
 	
 }

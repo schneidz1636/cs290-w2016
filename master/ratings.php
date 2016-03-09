@@ -1,15 +1,10 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
 
-
-    $rating = new ratings($_POST['widget_id']);
+$rating = new ratings($_POST['widget_id']);    
     
-    
-    isset($_POST['fetch']) ? $rating->get_ratings() : $rating->vote();
-    
-    
-    
-
-
+isset($_POST['fetch']) ? $rating->get_ratings() : $rating->vote();
 
 class ratings {
     
@@ -40,38 +35,51 @@ class ratings {
 			$data['whole_avg'] = 0;
 			echo json_encode($data);
 		} 
+		
 	}
 
 	public function vote() { 
 
 		# Get user id
+		#$uid = $_SESSION["uid"];
 		$uid = $_POST['user_id'];
-		
-			
-		# Add user to voted list
-
-		$this->data[$ID][$uid] = 1;
-		
 	
 		# Get the value of the vote
 		preg_match('/star_([1-5]{1})/', $_POST['clicked_on'], $match);
 		$vote = $match[1];
 		
 		$ID = $this->widget_id;
+		
 		# Update the record if it exists
 		if($this->data[$ID]) {
+			
+			# Add user to voted list, store vote value
+			# Or get previous
+			$prev = 0;
+			if ($this->data[$ID][$uid])  {
+				$prev = $this->data[$ID][$uid];
+			}
+			
+			$this->data[$ID][$uid] = $vote;
+			
+
 			#Check if user has previously voted
-			if( $this->data[$ID][$uid] ) {
-			
-			
+			if( $prev === 0 ) {
 				$this->data[$ID]['number_votes'] += 1;
+				$this->data[$ID]['total_points'] += $vote;
+			}
+			else {
+				$this->data[$ID]['total_points'] -= $prev;
 				$this->data[$ID]['total_points'] += $vote;
 			}
 		}
 		# Create a new one if it doesn't
 		else {
+			
 			$this->data[$ID]['number_votes'] = 1;
 			$this->data[$ID]['total_points'] = $vote;
+			
+			$this->data[$ID][$uid] = $vote;
 		}
 		
 		$this->data[$ID]['dec_avg'] = round( $this->data[$ID]['total_points'] / $this->data[$ID]['number_votes'], 1 );
