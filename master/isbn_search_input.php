@@ -37,7 +37,7 @@ function validate() {
 }
 
 $("#isbn_temp").change(validate);
-$("#isbn_temp_form").submit(function() {
+$("#isbn_temp_form").submit(function(event) {
 	if (!validate()) {
 		event.preventDefault();
 	}
