@@ -8,7 +8,7 @@
 
 <?php
 $time_start = microtime(true);
-echo "<table class='table table-striped'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count<th>Location</tr>";
+echo "<table class='table table-striped'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count<th>Location<th>More Info</tr>";
 $uid = $_SESSION['uid'];
 if($result = $mysqli->query("SELECT * FROM `user_has_book` JOIN `books` on user_has_book.book_isbn13=books.isbn WHERE user_iduser =".$uid)){
 	while($obj = $result->fetch_object()){
@@ -19,6 +19,7 @@ if($result = $mysqli->query("SELECT * FROM `user_has_book` JOIN `books` on user_
 		echo "<td>".htmlspecialchars($obj->publisher)."</td>";
 		echo "<td>".htmlspecialchars($obj->pagecount)."</td>";
 		echo "<td>".htmlspecialchars($obj->location)."</td>";	
+		echo "<td><a href=http://web.engr.oregonstate.edu/~grantch/test/book_info.php?q=".htmlspecialchars($obj->isbn).">More Info</a></td>";
 		}
 		
 		$result->close();
