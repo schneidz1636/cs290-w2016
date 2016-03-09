@@ -2,7 +2,6 @@
 
 <div class="page">
 <div class="well" style="margin-bottom: 0;">
-<h1>Log in</h1>
 
 <?php
 //function to test input for non-normal input
@@ -36,7 +35,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 }
 ?>
 
-<div class="container">
+<div class="container-fluid">
 	<h1>Please Login</h1>
 		<div class="col-lg-6">
 			<div class="well" background color="#f8f8f8">
