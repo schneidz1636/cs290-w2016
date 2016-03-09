@@ -1,5 +1,7 @@
 <?php include("_header.php");?>
 
+<div class="page">
+<div class="well" style="margin-bottom: 0;">
 <h1>Log in</h1>
 
 <?php
@@ -46,10 +48,14 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 						<input type="password" class="form-control" name="password">
 						<button type="submit" class="btn btn-default" name="submit">Log On</button>
 					</div>
+					<div class="form=group">
 					<input type="hidden" name="sendBackTo" value="<?= htmlspecialchars($sendBackTo) ?>">
+					</div>
 				</form>
 			</div>
 		</div>
+</div>
+</div>
 </div>
 
 <?php include("_footer.php");?>
