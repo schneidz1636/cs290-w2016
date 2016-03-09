@@ -47,10 +47,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 						<input type="password" class="form-control" name="password">
 						<button type="submit" class="btn btn-default" name="submit">Log On</button>
 					</div>
-					<div class="form=group">
-					<input type="hidden" name="sendBackTo" value="<?= htmlspecialchars($sendBackTo) ?>">
-					</div>
 				</form>
+					<div class="form=group">
+						<input type="hidden" name="sendBackTo" value="<?= htmlspecialchars($sendBackTo) ?>">
+					</div>
 			</div>
 		</div>
 </div>
