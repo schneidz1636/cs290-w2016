@@ -4,6 +4,8 @@
 	if (checkAuth(true) != "") {
 ?>
 
+<div class="page">
+<div class="well" style="margin-bottom:0;">
 <h1>My Books</h1>
 
 <?php
@@ -34,6 +36,9 @@ echo "<span style='display: none;' id='offset'>20</span>";
 
 ?>
 
+</div>
+</div>
+=======
 <script type="text/javascript">
 $(window).scroll(function() {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
