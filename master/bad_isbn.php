@@ -14,7 +14,7 @@
 						<div class="form-group">
 					
 							<label>ISBN:</label>
-							<input type="text" name ="isbn1" class="form-control">
+							<input type="text" name ="isbn1" class="form-control" value="<?php echo $_GET["isbn_temp"] ?>">
 						</div>
 
 						<div class="form-group">
