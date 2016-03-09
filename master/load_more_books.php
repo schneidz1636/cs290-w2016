@@ -1,9 +1,12 @@
 <?php
+session_start();
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu","grantch-db","rVrkAizgwSrdVJlU","grantch-db");
 require_once("http_response_code.php");
 
 if (!isset($_REQUEST["offset"])) {
 	http_response_code(400);
+} else if (!isset($_SESSION["uid"])) {
+	http_response_code(401);
 } else {
 	$query = "select isbn,title,authors,publisher,pagecount from books LIMIT 20 OFFSET ". htmlspecialchars($_REQUEST["offset"]);
 	if($result = $mysqli->query($query)){
