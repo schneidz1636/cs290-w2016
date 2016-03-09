@@ -95,7 +95,8 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 		</div>
 
 		<div class="col-sm-6 col-md-8 col-xs-12">  
-			<h2> <?php echo test_input($title);?> by: <?php echo test_input($authors);?> </h2>
+			<h2> <?php echo test_input($title);?> </h2>
+			<h3>by: <?php echo test_input($authors);?> </h3>
 			<p> <?php echo $description; ?></p>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -114,14 +115,27 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 				<td><?php echo test_input($publishedDate); ?></td>
 			</tr>
 			<tr>
-				<td>Pages</td>
+				<td>Pages:</td>
 				<td><?php echo test_input($pagecount); ?></td>
 			</tr>
 			<tr>
-				<td>Location</td>
+				<td>Location:</td>
 				<td><?php echo test_input($location); ?></td>
 			</tr>
 			</table>
+			<div class="col-sm-4 col-md-4 col-xs-4">
+			<form method="post" action='update_location.php' class="inform">
+						<div class="form-group">
+					
+							<label>Change Location:</label>
+							<input type="text" name ="location" class="form-control" value="<?php echo test_input($location); ?>">
+							<input type="hidden" name="isbn" value="<?php echo test_input($isbn); ?>">
+						</div>
+						<div class="form-group">
+						
+							<button type="submit" class="btn btn-default" name="submit">Change Location</button>
+						
+						</div>		
 			
 		</div>
 			
