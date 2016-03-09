@@ -68,17 +68,9 @@ function checkAuth($redirectIfNeeded) {
 					var widget = this;
 					var out_data = {
 						widget_id : $(widget).attr('id'),
-						fetch: 1
+						user_id : document.getElementById('jsid').value,
+						fetch : 1,
 					};
-					$.post(
-						'ratings.php',
-						out_data,
-						function(INFO) {
-							$(widget).data( 'fsr', INFO );
-							set_votes(widget);
-						},
-						'json'
-					);
 					$.post(
 						'ratings.php',
 						out_data,
@@ -120,6 +112,15 @@ function checkAuth($redirectIfNeeded) {
 						widget_id : $(star).parent().attr('id'),
 						user_id : document.getElementById('jsid').value
 					};
+					$.post(
+						'ratings.php',
+						clicked_data,
+						function(INFO) {
+							widget.data( 'fsr', INFO );
+							set_votes(widget);
+						},
+						'json'
+					); 		
 					$.post(
 						'ratings.php',
 						clicked_data,

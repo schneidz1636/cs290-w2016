@@ -28,14 +28,14 @@ class ratings {
 			echo json_encode($this->data[$this->widget_id]);
 		}
 		else {
-			$data['widget_id'] = $this->widget_id;
-			$data['number_votes'] = 0;
-			$data['total_points'] = 0;
-			$data['dec_avg'] = 0;
-			$data['whole_avg'] = 0;
-			echo json_encode($data);
+			$this->data[$this->widget_id]['widget_id'] = $this->widget_id;
+			$this->data[$this->widget_id]['number_votes'] = 0;
+			$this->data[$this->widget_id]['total_points'] = 0;
+			$this->data[$this->widget_id]['dec_avg'] = 0;
+			$this->data[$this->widget_id]['whole_avg'] = 0;
+			echo json_encode($this->data);
 		} 
-		
+		file_put_contents($this->data_file, serialize($this->data));
 	}
 
 	public function vote() { 
@@ -56,7 +56,7 @@ class ratings {
 			# Add user to voted list, store vote value
 			# Or get previous
 			$prev = 0;
-			if ($this->data[$ID][$uid])  {
+			if (isset($this->data[$ID][$uid]))  {
 				$prev = $this->data[$ID][$uid];
 			}
 			
