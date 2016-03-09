@@ -12,28 +12,35 @@ function test_input($data) {
    $data = htmlspecialchars($data);
    return $data;
 }
+//getting location from the DB
+
+$uid = test_input($_SESSION['uid']);
+$isbn = test_input($_REQUEST["q"]);
+$query = $mysqli->prepare("select title,authors,publisher,pagecount from books where isbn = ?");
+$query->bind_param("i",$isbn);
+	if ($query->execute()) {
+		$query->bind_result($title, $authors, $publisher, $pagecount);
+		while($query->fetch()){ 
+		} 
+		$query->close();
+	}	
+	
+$query = $mysqli->prepare("select location from user_has_book where user_iduser = ? and book_isbn13 = ?");
+$query->bind_param("ii",$uid, $isbn);
+	if ($query->execute()) {
+		$query->bind_result($location);
+		while($query->fetch()){ 
+		} 
+		$query->close();
+	}	
+	
+
 //gets the json from googleapi and puts it into bookstring object.
-$isbn_temp = test_input($_REQUEST["q"]);
-$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'.$isbn_temp;
+
+$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'.$isbn;
 $json = file_get_contents($tempURL);
 $bookstring = json_decode($json);
 
-if($bookstring->totalItems == "0"){
-	echo "<script>location.replace(\"http://web.engr.oregonstate.edu/~grantch/test/bad_isbn.php\");</script>";
-}
-//This section checks if the parts of the object exist or not
-//if exists puts data into variable, else, display DNE
-if(isset($bookstring->items[0]->volumeInfo->title)){
-	$title = $bookstring->items[0]->volumeInfo->title;
-}else{
-	$title = "Title unavailable";
-}
-
-if(isset($bookstring->items[0]->volumeInfo->authors[0])){
-	$authors = $bookstring->items[0]->volumeInfo->authors[0];
-}else{
-	$authors = "Authors unavailable";
-}
 
 if(isset($bookstring->items[0]->volumeInfo->description)){
 	$description = $bookstring->items[0]->volumeInfo->description;
@@ -41,25 +48,6 @@ if(isset($bookstring->items[0]->volumeInfo->description)){
 	$description = "Description unavailable";
 }
 
-if(isset($bookstring->items[0]->volumeInfo->industryIdentifiers[0]->identifier)){
-	if($bookstring->items[0]->volumeInfo->industryIdentifiers[0]->type == "ISBN_13"){
-		$identifier = $bookstring->items[0]->volumeInfo->industryIdentifiers[0]->identifier;
-	}elseif($bookstring->items[0]->volumeInfo->industryIdentifiers[1]->type == "ISBN_13"){
-		$identifier = $bookstring->items[0]->volumeInfo->industryIdentifiers[1]->identifier;
-	}else{
-		$identifier = "ISBN unavailable";
-	}
-	
-	
-}else{
-	$identifier = "ISBN unavailable";
-}
-
-if(isset($bookstring->items[0]->volumeInfo->publisher)){
-	$publisher = $bookstring->items[0]->volumeInfo->publisher;
-}else{
-	$publisher = "Publisher unavailable";
-}
 
 if(isset($bookstring->items[0]->volumeInfo->publishedDate)){
 	$publishedDate = $bookstring->items[0]->volumeInfo->publishedDate;
@@ -67,24 +55,13 @@ if(isset($bookstring->items[0]->volumeInfo->publishedDate)){
 	$publishedDate = "Date published unavailable";
 }
 
-if(isset($bookstring->items[0]->volumeInfo->pageCount)){
-	$pageCount = $bookstring->items[0]->volumeInfo->pageCount;
-}else{
-	$pageCount = "Page count unavailable";
-}
 
 if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 	$bookThumbnail = $bookstring->items[0]->volumeInfo->imageLinks->thumbnail;
 }else{
 	$bookThumbnail = "images/unavailable.jpg";
 }
-//going to add function to add returned data into the book db if the user wants to.
-$_SESSION['isbnTemp'] = htmlspecialchars($identifier);
-$_SESSION['titleTemp'] = htmlspecialchars($title);
-$_SESSION['authorsTemp'] = htmlspecialchars($authors);
-//$_SESSION['descriptionTemp'] = test_input($description);
-$_SESSION['publisherTemp'] = htmlspecialchars($publisher);
-$_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
+
 
 
 ?>
@@ -118,7 +95,7 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 		</div>
 
 		<div class="col-sm-6 col-md-8 col-xs-12">  
-			<h2> <?php echo $title;?> by: <?php echo test_input($authors);?> </h2>
+			<h2> <?php echo test_input($title);?> by: <?php echo test_input($authors);?> </h2>
 			<p> <?php echo $description; ?></p>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -126,7 +103,7 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 			<table class="table" style="padding-top:20px;">
 			<tr>
 				<td>ISBN13:</td>
-				<td><?php echo test_input($identifier); ?></td>
+				<td><?php echo test_input($isbn); ?></td>
 			</tr>
 			<tr>
 				<td>Publisher:</td>
@@ -138,20 +115,13 @@ $_SESSION['pageCountTemp'] = htmlspecialchars($pageCount);
 			</tr>
 			<tr>
 				<td>Pages</td>
-				<td><?php echo test_input($pageCount); ?></td>
+				<td><?php echo test_input($pagecount); ?></td>
 			</tr>
-
+			<tr>
+				<td>Location</td>
+				<td><?php echo test_input($location); ?></td>
+			</tr>
 			</table>
-
-			
-
-			<div class="col-sm-4 col-md-4 col-xs-4">
-			<form method="post" action='data_isbn_into_db.php' class="inform">
-				
-					<!--<label>Add to books?</label>-->
-					<button type="submit" class="btn btn-default" name="submit">Add Book</button>
-					
-			</form>
 			
 		</div>
 			
