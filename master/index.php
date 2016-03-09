@@ -15,10 +15,10 @@ function book_image_url($isbn_temp) {
 }
 ?>
 	
-<div class="page">	
+<div class="well no-sidepads">	
 		
 	<div class="container-fluid">
-		<div class="jumbotron top-body">
+		<div class="jumbotron top-body main-head">
 			<center><h1>OSU Book Tracker</h1></center>
 			<p>Welcome to the OSU book tracker. This site is intended to help you keep track of your book collection.
 			   If you have an account, log in and look at your books, and other user's books! If you are not a member,
