@@ -18,7 +18,7 @@
 						</div>
 
 						<div class="form-group">
-							<label>Name:</label>
+							<label>Title:</label>
 							<input type="text" name ="title"  class="form-control">
 						</div>
 					
@@ -33,8 +33,8 @@
 						</div>	
 						
 						<div class="form-group">	
-							<label>Edition:</label>
-							<input type="text" name ="edition"  class="form-control">
+							<label>Page Count:</label>
+							<input type="text" name ="pagecount"  class="form-control">
 						</div>	
 						
 						<div class="form-group">	
