@@ -100,7 +100,7 @@ function test_input($data) {
 
 <!-- login form -->
 <div class="container" >
-<h1>Welcome Noob!</h1>
+<h1>Welcome New User!</h1>
 <div class="conatainer">
 	<div class="row">	
 		<div class="col-lg-6">		
@@ -136,11 +136,6 @@ function test_input($data) {
 				</form>				
 			</div>		
 		</div>		
-		<div class="col-lg-6">			
-			<div class="well" background color="#f8f8f8">			
-				<h2>Right Col</h2>			
-			</div>								
-		</div>	
 	</div>
 </div>
 </div>
