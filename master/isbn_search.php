@@ -47,7 +47,7 @@ if(isset($bookstring->items[0]->volumeInfo->industryIdentifiers[0]->identifier))
 	}elseif($bookstring->items[0]->volumeInfo->industryIdentifiers[1]->type == "ISBN_13"){
 		$identifier = $bookstring->items[0]->volumeInfo->industryIdentifiers[1]->identifier;
 	}else{
-		$identifier = "ISBN unavailable";
+		$identifier = $isbn_temp;
 	}
 	
 	
