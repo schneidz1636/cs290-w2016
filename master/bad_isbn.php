@@ -34,7 +34,7 @@
 						
 						<div class="form-group">	
 							<label>Page Count:</label>
-							<input type="text" name ="pagecount"  class="form-control">
+							<input type="text" name ="pageCount"  class="form-control">
 						</div>	
 						
 						<div class="form-group">	
