@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var submit = $('#submit_comment');
 	getComments();
 
-	form.on('submit', function(e){
+	form.on('#submit_comment', function(e){
 		e.preventDefault();
 		$.ajax({
 			url:'add_comment.php',
