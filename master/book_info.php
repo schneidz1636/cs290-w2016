@@ -37,7 +37,7 @@ $query->bind_param("ii",$uid, $isbn);
 
 //gets the json from googleapi and puts it into bookstring object.
 
-$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'.htmlspecialchars($isbn).'&key=AIzaSyCl9zbmJi8v7l1tP5ky1Z89nOaOpW4YCYo';
+$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'.htmlspecialchars($isbn).'&key=AIzaSyBfO0dyPVYsGyHWzxHUVJGiLVa3fcQVTmI';
 $json = file_get_contents($tempURL);
 $bookstring = json_decode($json);
 
