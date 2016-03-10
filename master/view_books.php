@@ -9,7 +9,6 @@
 <h1>My Books</h1>
 
 <?php
-$time_start = microtime(true);
 echo "<table class='table table-striped' id='my_books_table'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count<th>Location<th>More Info</tr>";
 $uid = $_SESSION['uid'];
 if($result = $mysqli->query("SELECT * FROM `user_has_book` JOIN `books` on user_has_book.book_isbn13=books.isbn WHERE user_iduser =".$uid." LIMIT 20")){
@@ -28,10 +27,8 @@ if($result = $mysqli->query("SELECT * FROM `user_has_book` JOIN `books` on user_
 		$result->close();
 }
 echo "</table>";
-$time_end = microtime(true);
-$extime = ($time_end - $time_start);
+
 echo "<div id='no-more-books' style='display: none;'><h3>No more books.</h3></div>";
-echo '<b>Time: </b>'.$extime.'<b> sec</b>';
 echo "<span style='display: none;' id='offset'>20</span>";
 
 ?>

@@ -9,7 +9,7 @@
 <h1>Site Inventory</h1>
 
 <?php
-$time_start = microtime(true);
+
 echo "<table class='table table-striped' id='posts_table'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count<th>More Info</tr>";
 if($result = $mysqli->query("select isbn,title,authors,publisher,pagecount from books limit 20")){
 	while($obj = $result->fetch_object()){
@@ -26,10 +26,7 @@ if($result = $mysqli->query("select isbn,title,authors,publisher,pagecount from 
 	$result->close();
 }
 echo "</table>";
-$time_end = microtime(true);
-$extime = ($time_end - $time_start);
 echo "<div id='no-more-books' style='display: none;'><h3>No more books.</h3></div>";
-echo '<b>Time: </b>'.$extime.'<b> sec</b>';
 echo "<span style='display: none;' id='offset'>20</span>";
 
 ?>
