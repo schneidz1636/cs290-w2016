@@ -11,7 +11,7 @@
 		<script type="text/javascript">
 			(function(){
 				setTimeout(function(){
-				window.location="http://web.engr.oregonstate.edu/~grantch/test/login.php";
+				window.location="login.php";
 				},3000); /* 1000 = 1 second*/
 		})();
 		</script>
