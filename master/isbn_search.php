@@ -14,7 +14,7 @@ function test_input($data) {
 }
 //gets the json from googleapi and puts it into bookstring object.
 $isbn_temp = test_input($_REQUEST["isbn_temp"]);
-$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'.$isbn_temp;
+$tempURL = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'.htmlspecialchars($isbn_temp).'&key=AIzaSyCl9zbmJi8v7l1tP5ky1Z89nOaOpW4YCYo';
 $json = file_get_contents($tempURL);
 $bookstring = json_decode($json);
 
