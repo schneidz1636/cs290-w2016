@@ -17,6 +17,7 @@ if (!isset($_REQUEST["offset"])) {
 			echo "<td>".htmlspecialchars($obj->authors)."</td>";
 			echo "<td>".htmlspecialchars($obj->publisher)."</td>";
 			echo "<td>".htmlspecialchars($obj->pagecount)."</td>";
+			echo "<td><a href='book_info_2.php?q=".htmlspecialchars($obj->isbn)."'>More Info</a></td>";
 			echo "</tr>";
 		}
 		

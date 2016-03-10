@@ -10,7 +10,7 @@
 
 <?php
 $time_start = microtime(true);
-echo "<table class='table table-striped' id='posts_table'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count</tr>";
+echo "<table class='table table-striped' id='posts_table'><tr><th>ISBN<th>Title<th>Author<th>Publisher<th>Page count<th>More Info</tr>";
 if($result = $mysqli->query("select isbn,title,authors,publisher,pagecount from books limit 20")){
 	while($obj = $result->fetch_object()){
 		echo "<tr>";
@@ -19,6 +19,8 @@ if($result = $mysqli->query("select isbn,title,authors,publisher,pagecount from 
 		echo "<td>".htmlspecialchars($obj->authors)."</td>";
 		echo "<td>".htmlspecialchars($obj->publisher)."</td>";
 		echo "<td>".htmlspecialchars($obj->pagecount)."</td>";
+		echo "<td><a href='book_info_2.php?q=".htmlspecialchars($obj->isbn)."'>More Info</a></td>";
+		echo "</tr>";
 	}
 	
 	$result->close();
