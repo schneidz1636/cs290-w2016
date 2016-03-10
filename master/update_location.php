@@ -22,7 +22,7 @@ $query->bind_param("sii",$location, $uid, $isbn);
 	}	
 
 ?>
-<script>location.replace("http://web.engr.oregonstate.edu/~grantch/test/view_books.php")</script>
+<script>location.replace("view_books.php")</script>
 
 <?php } ?>
 <?php include("_footer.php");?>
