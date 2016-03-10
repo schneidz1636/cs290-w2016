@@ -74,7 +74,7 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 			
 			<div class='book_rating'>
 				<center>Rate this book!</center>
-				<div id="<?php echo test_input($identifier); ?>" class="rate_widget">
+				<div id="<?php echo test_input($isbn); ?>" class="rate_widget">
 					<div class="star_1 ratings_stars"></div>
 					<div class="star_2 ratings_stars"></div>
 					<div class="star_3 ratings_stars"></div>
