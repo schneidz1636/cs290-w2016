@@ -124,7 +124,7 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 			</tr>
 			</table>
 			<div class="col-sm-4 col-md-4 col-xs-4">
-			<form method="post" action='update_location.php' class="inform">
+			<form method="post" class="inform" action='update_location.php'> <!----> 
 						<div class="form-group">
 					
 							<label>Change Location:</label>
@@ -136,7 +136,7 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 							<button type="submit" class="btn btn-default" name="submit">Change Location</button>
 						
 						</div>		
-			
+			</form>
 		</div>
 			
 		</div>
@@ -158,7 +158,7 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 					</span>
 				</div>
 				<input type = "hidden" name="uid" value="<?php echo $_SESSION['uid'] ?>">
-				<input type = "hidden" name="isbn" id = "comment_isbn" value="<?php echo $identifier ?>">
+				<input type = "hidden" name="isbn" id = "comment_isbn" value="<?php echo $isbn ?>">
 				<!--<button type = "submit" id="submit_comment">You too</button>-->
 			</form>
 		</div>

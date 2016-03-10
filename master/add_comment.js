@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	var form = $('#form_submit');
-	var submit = $('#submit_comment');
+	var submit = $('submit_comment');
 	getComments();
 
-	form.on('#submit_comment', function(e){
+	form.on('submit', function(e){
 		e.preventDefault();
 		$.ajax({
 			url:'add_comment.php',
@@ -12,6 +12,7 @@ $(document).ready(function(){
 			data: form.serialize(),
 			datatype: 'json',
 			beforeSend: function(){
+				console.log("I got into the ajax");
 				submit.prop('disabled', true);
 				$('#comment').prop('disabled', true);
 			},
@@ -27,9 +28,10 @@ $(document).ready(function(){
 		});
 	});
 	function getComments(){
+		console.log($('#comment_isbn').val());
 		$.ajax({
 			method:"GET",
-			url:"view_comment.php?isbn="+('#isbn').val(), //"view_comment.php?isbn="+('#isbn').val()
+			url:"view_comment.php?isbn="+$('#comment_isbn').val(), //"view_comment.php?isbn="+('#isbn').val()
 			dataType:"json",
 			success:function(data){
 				console.log(data);
