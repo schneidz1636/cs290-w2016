@@ -57,40 +57,41 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 
 ?>
 	<div class="well">	
-	<div class="container-fluid">
-		<img src= "<?php echo $bookThumbnail;?>" class="img-responsive center-block"/>
-
-		<div class="col-sm-6 col-md-8 col-xs-12">  
-			<h2> <?php echo test_input($title);?> </h2>
-			<h3>by: <?php echo test_input($authors);?> </h3>
-			<p> <?php echo $description; ?></p>
+		<div class="container-fluid">
+			<div>
+				<img src= "<?php echo $bookThumbnail;?>" class="img-responsive center-block"/>
+			</div>
+			<div class="col-sm-6 col-md-8 col-xs-12">  
+				<h2> <?php echo test_input($title);?> </h2>
+				<h3>by: <?php echo test_input($authors);?> </h3>
+				<p> <?php echo $description; ?></p>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-			<table class="table" style="padding-top:20px;">
-			<tr>
-				<td>ISBN13:</td>
-				<td><?php echo test_input($isbn); ?></td>
-			</tr>
-			<tr>
-				<td>Publisher:</td>
-				<td><?php echo test_input($publisher); ?></td>
-			</tr>
-			<tr>
-				<td>Publish Date:</td>
-				<td><?php echo test_input($publishedDate); ?></td>
-			</tr>
-			<tr>
-				<td>Pages:</td>
-				<td><?php echo test_input($pagecount); ?></td>
-			</tr>
-			</table>
+				<table class="table" style="padding-top:20px;">
+					<tr>
+						<td>ISBN13:</td>
+						<td><?php echo test_input($isbn); ?></td>
+					</tr>
+				<tr>
+					<td>Publisher:</td>
+					<td><?php echo test_input($publisher); ?></td>
+				</tr>
+				<tr>
+					<td>Publish Date:</td>
+					<td><?php echo test_input($publishedDate); ?></td>
+				</tr>
+				<tr>
+					<td>Pages:</td>
+					<td><?php echo test_input($pagecount); ?></td>
+				</tr>
+				</table>
 			
-			
+			</div>
 		</div>
 
 	</div>
-
+</div>
 	
 <?php } ?>
 <?php include("_footer.php");?>

@@ -48,6 +48,4 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 ?>
 
 
-
-
 <?php include("_footer.php");?>

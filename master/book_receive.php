@@ -52,32 +52,13 @@ if(preg_match('/^(\d{10}(\d{3})?)?$/', htmlspecialchars($_REQUEST["isbn1"]))){
 		printf("Error: %s\n", $mysqli->error);
 	}	
 }else{
-	$message = "Please enter a ISBN of 10 or 13 digits."
+	$message = "Please enter a ISBN of 10 or 13 digits.";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 }
+
 ?>
 
-
-
-
-
-
-
-
-
-
-<script>location.replace("http://web.engr.oregonstate.edu/~grantch/test/view_books.php")</script>
-
-
-
-
-
-
-
-
-
-
-
+<script>location.replace("view_books.php")</script>
 
 <?php } ?>
 <?php include("_footer.php");?>
