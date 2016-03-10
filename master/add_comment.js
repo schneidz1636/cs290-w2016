@@ -45,12 +45,12 @@ $(document).ready(function(){
 					<div class="pull-left meta">
 					</div>
 					<div class="title h5">
-					<b>`+data[i].username+`</b> posted a comment
+					<b>`+str.replace(/<\/?[^>]+>/gi,data[i].username)+`</b> posted a comment
 					<h6 class="text-muted time">`+data[i].time+`</h6>
 					</div>
 					</div>
 					<div class="post-description">
-					<p>`+data[i].comment+`</p>
+					<p>`+str.replace(/<\/?[^>]+>/gi,data[i].comment)+`</p>
 					</div>`
 					$(html).appendTo('#comment_section');
 
