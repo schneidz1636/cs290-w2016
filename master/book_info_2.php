@@ -92,6 +92,30 @@ if(isset($bookstring->items[0]->volumeInfo->imageLinks->thumbnail)){
 
 	</div>
 </div>
+
+</div>
+<link rel="stylesheet" type="text/css" href="http://recarbonated.me/images/pretty.css"></link>
+<script src="add_comment.js"></script>
+<div class="container-fluid">
+	<div class="col-sm-8">
+		<div class="form-group">
+			<form id="form_submit" method="POST" action="add_comment.php">
+			<!-- need to supply post id with hidden fild -->
+				<div class="input-group">
+					<input class="form-control" name="comment" id="comment" rows="3" placeholder="Type your comment here." required>
+					<span class="input-group-addon">
+						<button type="submit" id="submit_comment">Submit</button>
+					</span>
+				</div>
+				<input type = "hidden" name="uid" value="<?php echo $_SESSION['uid'] ?>">
+				<input type = "hidden" name="isbn" id = "comment_isbn" value="<?php echo $isbn ?>">
+				<!--<button type = "submit" id="submit_comment">You too</button>-->
+			</form>
+		</div>
+		<div id ="comment_section" class ="panel panel-white post"> <!--Comment Section-->
+		</div>
+	</div>
+</div>
 	
 <?php } ?>
 <?php include("_footer.php");?>
