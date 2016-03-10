@@ -29,7 +29,7 @@ $(document).ready(function(){
 	function getComments(){
 		$.ajax({
 			method:"GET",
-			url:"view_comment.php?isbn=9780393082104", //"view_comment.php?isbn="+('#isbn').val()
+			url:"view_comment.php?isbn="+('#isbn').val(), //"view_comment.php?isbn="+('#isbn').val()
 			dataType:"json",
 			success:function(data){
 				console.log(data);
