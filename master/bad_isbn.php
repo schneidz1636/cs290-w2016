@@ -1,4 +1,8 @@
 <?php include('_header.php');?>
+<?php 
+	if (checkAuth(true) != "") {
+?>	
+
 
 <div class="page">
 <div class="container-fluid">
@@ -51,4 +55,5 @@
 </div>
 </div>
 
+<?php } ?>
 <?php include("_footer.php");?>
